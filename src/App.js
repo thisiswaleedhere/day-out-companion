@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Header from './components/Header';
+import List from './components/List';
+import Map from './components/Map';
+import Footer from './components/Footer';
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <div>
+        <Header />
+      </div>
+      <div className='flex-column md:flex justify-center align-middle'>
+        <div className='md:w-1/3 overflow-y-auto md:max-h-screen max-h-60 ml-8 mr-2'>
+          <List />
+        </div>
+        <div className='md:w-2/3 h-full md:h-full pt-8'>
+          <Map />
+        </div>
+      </div>
+      <div>
+        <Footer />
+      </div>
+
+
     </div>
   );
 }
