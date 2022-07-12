@@ -51,7 +51,7 @@ const Header = ({ setCoordinates }) => {
                         className="w-full font-sansserif rounded-full bg-gray-50 shadow-xl border-0 appearance-none focus:ring-0 focus:border-yellow-400 focus:border-2 active:ring-0 text-gray-800 p-1 indent-2"
                         id="search-place"
                         type="text"
-                        placeholder="Search for a place..."
+                        placeholder="Search For A City Here"
                         name="searchPlace"
                         value={query}
                         onChange={(e) => { setQuery(e.target.value); }}

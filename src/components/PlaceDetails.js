@@ -30,7 +30,7 @@ const PlaceDetails = ({ place, match, refProp }) => {
                     <div className='bg-gray-300 py-1 text-xs mb-1 mr-2 px-2 rounded-lg' > {name} </div>))} </div>
 
                 <div className="text-gray-700 text-sm italic text-right flex justify-between"><div className="text-gray-600 text-xl pr-1"><MdLocationOn /></div>{place.address ? place.address : place.location_string}</div>
-                <div className="text-gray-800 text-sm my-2 flex justify-between cursor-pointer hover:underline hover:text-blue-800"
+                <div className="text-gray-800 text-right break-all text-sm my-2 flex justify-between cursor-pointer hover:underline hover:text-blue-800"
                     onClick={() => window.open(place.website ? place.website : `http://www.google.com/search?q=${place.name}&btnI`, '_blank')}>
                     <div className="text-gray-600 text-lg pr-1"><HiOutlineGlobeAlt /></div>{place.website ? place.website : (place.name)?.toLowerCase().split(" ").join("") + '.com'}</div>
             </div>

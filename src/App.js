@@ -8,9 +8,8 @@ import { getPlacesData } from './api/apiFile';
 
 function App() {
 
-  //                               STATES
 
-  //const [dummy, setDummy] = useState([]);
+
   const [placeNames, setPlaceNames] = useState([
     { name: "ABC Hotels and Restaurants", rating: 2, num_reviews: 32, price_level: '$$$', ranking: 25, cuisine: ['Chinese', 'Continental', 'European', 'Seafood'], address: "233/22, Northington Lane, Shirley Street, London-2", phone: 2322442, website: "foodsite.com", latitude: 51.879, longitude: 5.6997 },
     { name: "DEF Hotels and Restaurants", rating: 3, num_reviews: 32, price_level: '$$$', ranking: 25, cuisine: ['Chinese', 'Continental', 'European', 'Seafood'], address: "233/22, Northington Lane, Shirley Street, London-2", phone: 2322442, website: "foodsite.com", latitude: 51.865, longitude: 5.6897 },
@@ -19,6 +18,7 @@ function App() {
     { name: "MNO Hotels and Restaurants", rating: 4.8, num_reviews: 32, price_level: '$$$', ranking: 25, cuisine: ['Chinese', 'Continental', 'European', 'Seafood'], address: "233/22, Northington Lane, Shirley Street, London-2", phone: 2322442, website: "foodsite.com", latitude: 51.899, longitude: 5.6397 }]);
 
   const [filteredPlaces, setFilteredPlaces] = useState([]);
+  const [myPlace, setMyPlace] = useState(0);
 
   const [coordinates, setCoordinates] = useState([25.2048, 55.2708]);
   const [bounds, setBounds] = useState([]);
@@ -29,44 +29,38 @@ function App() {
   const [iconClicked, setIconClicked] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  //                           TEMP DUMMY DATA
-
-
 
 
 
   //                              SIDE-EFFECTS
 
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
-  //     setCoordinates([latitude, longitude]);
-  //   });
-  // }, []);
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
+      setCoordinates([latitude, longitude]);
+    });
+  }, [myPlace]);
 
 
   useEffect(() => {
     const filtered = placeNames?.filter((place) => Number(place.rating) > rating);
     setFilteredPlaces(filtered);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rating, isLoading]);
 
 
   useEffect(() => {
     setIsLoading(true);
-    console.log('calling')
+    setIconClicked(null);
+
     getPlacesData(queryType, bounds).then((data) => {
-      //setDummy(data);
-      console.log(queryType);
       setPlaceNames(data);
     }).then(() => {
       setIsLoading(false);
-      console.log(placeNames);
-
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bounds, queryType])
 
 
-
-  // console.log(bounds);
 
 
   //                             RETURN STATEMENTS
@@ -89,7 +83,7 @@ function App() {
 
         <div className='h-1/2 sm:w-3/5 md:w-2/3 sm:h-full md:h-full mt-8 mr-2 bg-gray-300 z-0 relative'>
 
-          <MapComponent setCoordinates={setCoordinates} setBounds={setBounds} coordinates={coordinates} placeNames={filteredPlaces?.length ? filteredPlaces : placeNames} setIconClicked={setIconClicked} isLoading={isLoading} />
+          <MapComponent setCoordinates={setCoordinates} setBounds={setBounds} coordinates={coordinates} placeNames={filteredPlaces?.length ? filteredPlaces : placeNames} setIconClicked={setIconClicked} queryType={queryType} setMyPlace={setMyPlace} isLoading={isLoading} />
 
         </div>
 

@@ -2,17 +2,20 @@ import { Map, Overlay } from 'pigeon-maps';
 import { maptiler } from 'pigeon-maps/providers';
 import { useState } from "react";
 import { MdLocalHotel } from 'react-icons/md';
-import { AiFillStar } from 'react-icons/ai';
+import { MdRestaurant } from "react-icons/md";
+import { GiBarracksTent } from "react-icons/gi";
+import { BiCurrentLocation } from "react-icons/bi";
 
 
 
-const MapComponent = ({ setCoordinates, setBounds, coordinates, placeNames, setIconClicked, isLoading }) => {
+const MapComponent = ({ setCoordinates, setBounds, coordinates, placeNames, setIconClicked, queryType, setMyPlace, isLoading }) => {
 
     const maptilerProvider = maptiler('Opc8ZH5PLEQHDjVFaSFA', 'streets');
 
 
     const [zoom, setZoom] = useState(14);
     const [visible, setVisible] = useState(100);
+
 
     return (
         <div className='z-0'>
@@ -22,35 +25,39 @@ const MapComponent = ({ setCoordinates, setBounds, coordinates, placeNames, setI
                     setCoordinates(center)
                     setZoom(zoom)
                     setBounds(bounds)
-                }}
-            >
-                {isLoading ? <div>Loading</div> : placeNames?.map((pla, i) =>
+                }} >
 
-                    <div key={i}>
+                <div onClick={() => setMyPlace(coordinates)}>
+                    <Overlay anchor={["", ""]}>
+                        <BiCurrentLocation className='text-gray-700 text-3xl pl-1 pt-1 cursor-pointer' />
+                    </Overlay>
+                </div>
 
+                {!isLoading &&
+                    placeNames?.map((pla, i) => {
 
-                        <Overlay anchor={[Number(pla.latitude), Number(pla.longitude)]}   >
-                            <div key={i} onClick={() => setIconClicked(i)} onMouseOver={() => setVisible(i)} onMouseLeave={() => setVisible(100)} >
-                                <MdLocalHotel />
-                                {visible === i &&
-                                    <div className='bg-yellow-100 rounded-lg p-1 font-bold px-1 text-xs'>{pla.name}
-                                        <div className='text-gray-700 text-right font-medium pt-0.5'>{pla.rating}
-                                            <div className='bg-gray text-yellow-500 inline-block align-middle text-base'><AiFillStar /></div>
-                                        </div>
-                                    </div>}
+                        return (
 
-                            </div>
-                        </Overlay>
+                            <Overlay anchor={[Number(pla.latitude), Number(pla.longitude)]} >
+                                <div key={i} onClick={() => setIconClicked(i)} onMouseOver={() => setVisible(i)} onMouseLeave={() => setVisible(100)} >
 
-                    </div>
+                                    {queryType === "hotels" ? <MdLocalHotel className='text-gray-100 text-lg bg-indigo-700 rounded-b-xl px-0.5 pb-0.5' /> :
+                                        queryType === "restaurants" ? <MdRestaurant className='text-gray-100 text-lg bg-orange-700 rounded-b-xl px-0.5 pb-0.5' /> :
+                                            <GiBarracksTent className='text-gray-100 text-lg bg-green-700 rounded-b-xl px-0.5 ' />}
+                                    {visible === i &&
+                                        <div className='bg-yellow-100 rounded-lg p-1 font-bold px-1 text-xs'>{pla.name}
+                                            <div className='text-gray-700 text-right font-medium pt-0.5'>Latitude: {Number(pla.latitude)} Longitude: {Number(pla.longitude)}
 
+                                            </div>
+                                        </div>}
 
-                )
+                                </div>
+                            </Overlay>
+                        )
+                    })
+
                 }
-
-
             </Map >
-
 
         </div >
     )
