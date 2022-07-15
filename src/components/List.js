@@ -19,7 +19,7 @@ const List = ({ queryType, setQueryType, rating, setRating, placeNames, iconClic
 
 
     return (
-        <div className="mx-auto font-Josefin">
+        <div className="mx-auto font-Josefin min-w-[230px]">
 
             <div className="py-2 font-semibold text-lg text-center my-2 mr-4">Restaurants, Hotels and Attractions around you</div>
 

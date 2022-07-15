@@ -18,7 +18,7 @@ const MapComponent = ({ setCoordinates, setBounds, coordinates, placeNames, setI
 
 
     return (
-        <div className='z-0'>
+        <div className='z-0 min-w-[350px]'>
 
             <Map provider={maptilerProvider} height={'85vh'} center={coordinates} zoom={zoom}
                 onBoundsChanged={({ center, zoom, bounds }) => {

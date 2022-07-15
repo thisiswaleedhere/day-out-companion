@@ -36,7 +36,7 @@ const Header = ({ setCoordinates }) => {
 
 
     return (
-        <div className="flex-column h-32 sm:h-24 sm:flex sm:justify-between sm:align-middle px-5 py-6 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+        <div className="flex-column h-32 sm:h-24 sm:flex sm:justify-between sm:align-middle px-5 py-6 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 min-w-[350px]">
 
             <div className="flex justify-center sm:justify-start font-light text-gray-50 text-2xl text-center align-middle pl-3 pb-3 sm:pb-0 sm:pt-1 sm:pl-2">
                 <div className="pt-1.5"><FaUmbrellaBeach /></div>

@@ -66,7 +66,7 @@ function App() {
   //                             RETURN STATEMENTS
 
   return (
-    <div className="App bg-gray-100">
+    <div className="App bg-gray-100 max-w-[1440px]">
 
       <div className='z-10'>
         <Header setCoordinates={setCoordinates} />
