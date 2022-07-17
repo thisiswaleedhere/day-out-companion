@@ -10,7 +10,7 @@ import { BiCurrentLocation } from "react-icons/bi";
 
 const MapComponent = ({ setCoordinates, setBounds, coordinates, placeNames, setIconClicked, queryType, setMyPlace, isLoading }) => {
 
-    const maptilerProvider = maptiler('Opc8ZH5PLEQHDjVFaSFA', 'streets');
+    const maptilerProvider = maptiler(`${process.env.REACT_APP_MAPTILER_API_KEY}`, 'streets');
 
 
     const [zoom, setZoom] = useState(14);
