@@ -15,8 +15,8 @@ const Footer = () => {
             <hr className="h-0.5 w-2/3 mx-auto bg-gray-400 mt-2 mb-4" />
             <div className="text-center text-xs font-Josefin text-gray-100">Made by MW </div>
             <div className="flex justify-center space-x-4 mt-1 text-gray-100">
-                <div><AiOutlineGithub /></div>
-                <div><CgWebsite /></div>
+                <div><a href="https://github.com/thisiswaleedhere" target="_blank" rel="noreferrer" ><AiOutlineGithub /></a></div>
+                <div><a href="https://waleed-dev-portfolio.vercel.app/" target="_blank" rel="noreferrer" ><CgWebsite /></a></div>
             </div>
 
 
